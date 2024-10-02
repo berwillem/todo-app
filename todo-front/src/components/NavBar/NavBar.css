@@ -1,0 +1,35 @@
+nav {
+  background-color: rgb(107, 106, 106);
+  width: 450px;
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 40px;
+}
+nav .icon {
+  color: #fff;
+  font-size: 1.7rem;
+}
+nav ul {
+  display: flex;
+  padding: 20px 20px;
+  justify-content: space-around;
+}
+nav ul li {
+  padding: 8px;
+}
+nav ul li:hover {
+  background-color: #ffffff34;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+.active {
+  background-color: #fff;
+  border-radius: 10px;
+}
+.active .icon {
+  color: var(--primary-color);
+}
