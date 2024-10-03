@@ -4,13 +4,14 @@ import { FaHome } from "react-icons/fa";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { FaNewspaper } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import "animate.css";
 
 export default function NavBar() {
   return (
     <>
       <nav>
         <ul>
-          <NavLink to={"/home"}>
+          <NavLink to={""}>
             <li>
               <FaHome className="icon" />
             </li>

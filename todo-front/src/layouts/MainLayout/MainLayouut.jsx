@@ -6,7 +6,7 @@ export default function MainLayouut() {
     <>
       <NavBar></NavBar>
       <Outlet></Outlet>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 }

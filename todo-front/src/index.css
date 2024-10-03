@@ -38,3 +38,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+nav {
+  animation: ease-in fadein 0.8s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: 1;
+  }
+}
