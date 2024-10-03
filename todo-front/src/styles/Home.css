@@ -1,6 +1,6 @@
 .intro {
   background: linear-gradient(var(--secondary-color), transparent);
-  width: 22rem;
+  width: 20rem;
   height: 30rem;
   position: absolute;
   left: calc(50% - 11rem);
@@ -16,4 +16,79 @@
   width: 20rem;
   height: 20rem;
   border-radius: 20%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+form div {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+form label {
+  display: block;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+form input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+form button {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+.intro form {
+  position: relative;
+  top: -3rem;
+}
+
+.intro h2 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.intro img, .intro h2 {
+  position: relative;
+  z-index: 2;
+}
+
+.container-register{
+  padding: 20px;
+
+}
+.container-login{
+  padding: 20px;
 }
