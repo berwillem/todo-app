@@ -1,9 +1,10 @@
 nav {
   background-color: rgb(107, 106, 106);
-  width: 450px;
+  width: 80px;
+  height: 400px;
   position: fixed;
-  top: 90%;
-  left: 50%;
+  top: 50%;
+  left:15%;
   transform: translate(-50%, -50%);
   border-radius: 40px;
 }
@@ -13,6 +14,8 @@ nav .icon {
 }
 nav ul {
   display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 20px 20px;
   justify-content: space-around;
 }
@@ -33,3 +36,6 @@ nav ul li:hover {
 .active .icon {
   color: var(--primary-color);
 }
+/* .container{
+  display:flex;
+} */

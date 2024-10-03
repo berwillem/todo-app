@@ -10,13 +10,13 @@
 
 :root {
   --primary-color: #4c6085;
-  --secondary-color: #39a0ed;
-  --third-color: #36f1cd;
+  --secondary-color: rgb(57, 160, 237);
+  --third-color: rgb(54, 241, 205);
   --backup-color: #13c4a3;
 }
 
 body {
-  height: 100vh;
+  /* height: 100vh; */
   color: #fff;
   opacity: 0.9;
   background-image: radial-gradient(

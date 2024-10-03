@@ -20,7 +20,7 @@ export default function NavBar() {
               <SiLevelsdotfyi className="icon" />
             </li>
           </NavLink>
-          <NavLink to={"/news"}>
+          <NavLink to={"/blog"}>
             <li>
               <FaNewspaper className="icon" />
             </li>

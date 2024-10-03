@@ -5,6 +5,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout/MainLayouut"; // Corrected spelling
 import Home from "./pages/Home";
 import Register from './pages/Register';
+import Motivation from "./pages/Motivation";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+
+
 
 const router = createBrowserRouter([
   {
@@ -12,9 +17,22 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       {
-        path: "home",
+        path: "/", 
         element: <Home></Home>,
       },
+      {
+        path: "contact", 
+        element: <Contact></Contact>,
+      },
+      {
+        path: "motivation", 
+        element: <Motivation></Motivation>,
+      },
+      {
+        path: "blog", 
+        element: <Blog></Blog>,
+      },
+    
     ],
   },
   {
@@ -27,6 +45,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+
 ]);
 
 createRoot(document.getElementById("root")).render(
