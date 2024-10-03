@@ -4,6 +4,10 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayouut from "./layouts/MainLayout/MainLayouut";
 import Home from "./pages/Home";
+import Motivation from "./pages/Motivation";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+
 
 const router = createBrowserRouter([
   {
@@ -11,12 +15,27 @@ const router = createBrowserRouter([
     element: <MainLayouut></MainLayouut>,
     children: [
       {
-        path: "home",
+        path: "/", 
         element: <Home></Home>,
       },
+      {
+        path: "contact", 
+        element: <Contact></Contact>,
+      },
+      {
+        path: "motivation", 
+        element: <Motivation></Motivation>,
+      },
+      {
+        path: "blog", 
+        element: <Blog></Blog>,
+      },
+    
     ],
   },
+  
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />

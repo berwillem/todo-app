@@ -36,3 +36,6 @@ nav ul li:hover {
 .active .icon {
   color: var(--primary-color);
 }
+/* .container{
+  display:flex;
+} */
