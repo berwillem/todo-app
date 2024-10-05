@@ -1,0 +1,91 @@
+.sponsors-slider {
+    padding: 5px;
+    background: linear-gradient(90deg, #ff8a00, #da1b60);
+    text-align: center;
+  }
+  
+  .sponsors-slider img {
+    width: 200px;
+    height: 94px;
+    margin: 0 auto;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  
+  .sponsors-slider img:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .sponsors-slider h2 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
+    animation: fadeTextIn 2s ease-in-out;
+    color: saddlebrown;
+  }
+
+  .sponsors-slider img {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  @keyframes fadeTextIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  .paper-effect {
+    background: #fff;
+    padding: 15px 25px;
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2), 
+                0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 22px;
+    transform: rotate(-2deg); /* Slight tilt for the paper effect */
+  }
+  
+  .paper-effect::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Pin shadow */
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .paper-effect::before {
+    animation: pulse 1.5s infinite;
+  }

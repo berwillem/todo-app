@@ -10,7 +10,6 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
