@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config()
 const morgan = require('morgan');  // Import Morgan
 const fs = require('fs');  // File System module for logging to a file
 const path = require('path');  // Path module to handle file paths
@@ -12,6 +13,7 @@ require('dotenv').config();
 const app = express();
 const db = process.env.DB,
     port = process.env.PORT || 5000;
+
 
 app.use(express.json());
 
