@@ -4,8 +4,9 @@ import { FaHome } from "react-icons/fa";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { FaNewspaper } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
-import "animate.css";
 
+
+import { FcTodoList } from "react-icons/fc";
 export default function NavBar() {
   return (
     <>
