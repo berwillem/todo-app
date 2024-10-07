@@ -64,7 +64,7 @@
 .login {
   background-color: transparent;
   font-weight: 600;
-  color: white;
+  /* color: white; */
   border: white solid 2px;
 }
 
@@ -75,55 +75,77 @@
   left: 40%;
   padding: 0.5rem;
 }
+ 
 
+
+form div {
+  width: 100%;
+  margin-bottom: 1.2rem;
+ 
+}
+/* formulaire  */
+
+ form button{
+  background-color: var(--primary-color);
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  height: 8vh;
+  width: 40%;
+
+ }
+form input{
+  height: 7vh;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  padding: 2rem 0;
+  height: 60vh;
+  gap: 7px;
+  padding-top: 100px;  
 }
-
-form div {
-  width: 100%;
-  margin-bottom: 1.2rem;
-}
-
-form label {
-  display: block;
-  font-size: 1.1rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  padding-left: 0.5rem;
-}
-
-form input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background-color: #fff;
-}
-
-form button {
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 1.5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-  width: 100%;
-}
-
 form button:hover {
-  background-color: #0056b3;
+  background-color:var(--secondary-color);
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  height: 7vh;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  padding-left: 2.5rem; 
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+/* icône à l'intérieur de l'input */
+.input-icon {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+input::placeholder {
+  color:var(--primary-color);
+  font-style: italic;
+  font-size: 1.3rem; 
+  opacity: 1;
 }
 
 .intro form {
@@ -132,7 +154,7 @@ form button:hover {
 }
 
 .intro h2 {
-  color: white;
+  /* color: white; */
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
@@ -150,6 +172,121 @@ form button:hover {
   padding: 20px;
 }
 
+
+  /* Styles pour la pop-up */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.555); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 80;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 37rem;
+  height: 85vh;
+  max-width: 100%;
+  text-align: center;
+}
+
+.popup-content h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content form div {
+  margin-bottom: 1rem;
+}
+
+.popup-content form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.popup-content button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  /* color: white; */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.logo {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+
+}
+.logovector{
+ padding-left: 300px;
+}
+
+.vector{
+  position: absolute ;
+  top: 70px;
+  right: 90px;
+}
+.container-image{
+position: relative;
+
+}
+.title-image{
+  position: absolute;
+  top: 148px;
+  right: 160px;
+}
+.subtitle-image{
+  position: absolute;
+  top: 170px;
+  right:100px;
+  font-size: 17px;
+  color: rgba(122, 121, 121, 0.884);
+}
+.iconimage{
+  position: absolute;
+  top: 108px;
+  right:150px;
+  font-size: 35px
+
+}
+
+.victorpurpule{
+  position: absolute;
+  top: 167px;
+  right:269px;
+
+  
+}
+.victor1{
+  position: absolute;
+  top: 142px;
+  right:305px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  padding: 3px;
+}
+
+
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -157,4 +294,5 @@ form button:hover {
   to {
     opacity: 1;
   }
+
 }
