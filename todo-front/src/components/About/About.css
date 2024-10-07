@@ -1,41 +1,33 @@
 .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh; 
-  }
-  
-  .div1,
-  .div2 {
-    width: 200px; 
-    height: 200px; 
-    overflow: hidden; 
-    position: relative; 
-  }
-  
-  .image {
-    width: 100%; 
-    height: auto; 
-    transition: transform 0.5s ease; 
-  }
-  
-  .div1:hover .image,
-  .div2:hover .image {
-    transform: rotate(360deg); 
-  }
-
-  .styled-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .styled-button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 50%;
+  margin-left: 500px;
+  gap: 30px;
+  text-align: center;
+}
+.about-image {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  rotate: 7deg;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.image-background {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  background-color: var(--third-color);
+  position: relative;
+}
+.about-image:hover {
+  rotate: 0deg;
+}
