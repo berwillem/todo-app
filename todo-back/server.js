@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -11,19 +12,19 @@ require("dotenv").config();
 const upload = require("./middleware/upload");
 const axios = require("axios");
 
-
+const rateLimiter = require('./middlewares/rateLimiter');
 const app = express();
-const db = process.env.DB,
-  port = process.env.PORT || 5000;
 
-app.use(express.json());
+const db = process.env.DB;
+const port = process.env.PORT || 5000;
+
 
 // Enable CORS
 app.use(cors());
 
 // Swagger route to serve the UI
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use('/api/v1', rateLimiter, routes);
 const routes = require("./routes/index");
 app.use("/api/v1", routes);
 
@@ -55,6 +56,8 @@ mongoose
 
   })
 
+
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on port http://localhost:${port}`); // server is listening on port 5000
 });
