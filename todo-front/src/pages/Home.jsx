@@ -10,11 +10,53 @@ import { LuListTodo } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
   const [showPopup, setShowPopup] = useState(false); 
   const [isLogin, setIsLogin] = useState(false); //pour afficher la popup login 
   const popupRef = useRef(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccessMessage('');
+
+    const endpoint = isLogin 
+      ? "http://localhost:5000/api/v1/auth/login" 
+      : "http://localhost:5000/api/v1/auth/register";
+
+    axios.post(endpoint, userData)
+      .then((res) => {
+        if (isLogin) {
+          alert("Successfully logged in");
+          const token = res.data.token; 
+          localStorage.setItem("token", token); 
+          navigate("/");
+        } else {
+          setSuccessMessage("Registered successfully! You can now log in.");
+          setUserData({ username: '', email: '', password: '' }); 
+        }
+      })
+      .catch((err) => {
+        const errorMessage = err.response?.data?.message || (isLogin ? "Login failed" : "Registration failed");
+        setError(errorMessage);
+      });
+  };
 
   const closePopup = () => {
     setShowPopup(false);
@@ -68,6 +110,8 @@ export default function Home() {
               </div>
             </div>
             
+            {error && <p className="error-message">{error}</p>}
+             console.log({successMessage})
             {isLogin ? (
               <form>
                 <div className="input-wrapper">
@@ -80,7 +124,7 @@ export default function Home() {
                 </div>
                 <button type="submit">Login</button>
                 <p>
-                  Don't have an account?{" "}
+                  Dont have an account?{" "}
                   <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer", color: "blue" }}>
                     Register here
                   </span>
@@ -98,7 +142,14 @@ export default function Home() {
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
-                  <input type="password" placeholder="Strong password" required />
+                  <input 
+                    type="password"
+                    name="password"
+                    placeholder="Strong password"
+                    value={userData.password}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <button type="submit">Register</button>
                 <p>

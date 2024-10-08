@@ -48,6 +48,11 @@ mongoose
     console.log(`Connected successfully to ${db}`);
 })
 .catch((err) => {
+  .connect(db)
+  .then(() => {
+    console.log(`connected successfully to MongoDB`);
+  })
+  .catch((err) => {
     console.error(err);
 });
 
