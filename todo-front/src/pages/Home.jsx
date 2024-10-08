@@ -16,15 +16,15 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const [showPopup, setShowPopup] = useState(false); 
-  const [isLogin, setIsLogin] = useState(false); 
+  const [showPopup, setShowPopup] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const popupRef = useRef(null);
 
   const handleChange = (e) => {
@@ -34,34 +34,37 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    setSuccessMessage('');
+    setError("");
+    setSuccessMessage("");
 
-    const endpoint = isLogin 
-      ? "http://localhost:5000/api/v1/auth/login" 
+    const endpoint = isLogin
+      ? "http://localhost:5000/api/v1/auth/login"
       : "http://localhost:5000/api/v1/auth/register";
 
-    axios.post(endpoint, userData)
+    axios
+      .post(endpoint, userData)
       .then((res) => {
         if (isLogin) {
           alert("Successfully logged in");
-          const token = res.data.token; 
-          localStorage.setItem("token", token); 
+          const token = res.data.token;
+          localStorage.setItem("token", token);
           navigate("/");
         } else {
           setSuccessMessage("Registered successfully! You can now log in.");
-          setUserData({ username: '', email: '', password: '' }); 
+          setUserData({ username: "", email: "", password: "" });
         }
       })
       .catch((err) => {
-        const errorMessage = err.response?.data?.message || (isLogin ? "Login failed" : "Registration failed");
+        const errorMessage =
+          err.response?.data?.message ||
+          (isLogin ? "Login failed" : "Registration failed");
         setError(errorMessage);
       });
   };
 
   const closePopup = () => {
     setShowPopup(false);
-    setIsLogin(false); 
+    setIsLogin(false);
   };
 
   useEffect(() => {
@@ -96,7 +99,9 @@ export default function Home() {
                 <h3>{isLogin ? "Welcome back" : "Join us today"}</h3>
               </div>
               <div className="subtitle-image">
-                <p>{isLogin ? "Log in to your account" : "Create your account"}</p>
+                <p>
+                  {isLogin ? "Log in to your account" : "Create your account"}
+                </p>
               </div>
               <div className="victorpurpule">
                 <img src={vector3} />
@@ -108,19 +113,17 @@ export default function Home() {
                 <FcTodoList />
               </div>
             </div>
-            
             {error && <p className="error-message">{error}</p>}
-             console.log({successMessage})
             {isLogin ? (
               <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
                   <input
-                    type="email" 
+                    type="email"
                     name="email"
-                    placeholder="Email" 
+                    placeholder="Email"
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
                 <div className="input-wrapper">
@@ -130,13 +133,16 @@ export default function Home() {
                     name="password"
                     placeholder="Password"
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
                 <button type="submit">Login</button>
                 <p>
                   Dont have an account?{" "}
-                  <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer", color: "blue" }}>
+                  <span
+                    onClick={() => setIsLogin(false)}
+                    style={{ cursor: "pointer", color: "blue" }}
+                  >
                     Register here
                   </span>
                 </p>
@@ -145,41 +151,44 @@ export default function Home() {
               <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <FaRegUser className="input-icon" />
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="username"
                     placeholder="Full name"
                     value={userData.username}
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
-                  <input 
+                  <input
                     type="email"
                     name="email"
-                    placeholder="Valid email" 
+                    placeholder="Valid email"
                     value={userData.email}
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
-                  <input 
+                  <input
                     type="password"
                     name="password"
                     placeholder="Strong password"
                     value={userData.password}
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
                 <button type="submit">Register</button>
                 <p>
                   Already have an account?{" "}
-                  <span onClick={() => setIsLogin(true)} style={{ cursor: "pointer", color: "blue" }}>
+                  <span
+                    onClick={() => setIsLogin(true)}
+                    style={{ cursor: "pointer", color: "blue" }}
+                  >
                     Login here
                   </span>
                 </p>
