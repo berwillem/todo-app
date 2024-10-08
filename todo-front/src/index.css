@@ -17,7 +17,7 @@
 
 body {
   /* height: 100vh; */
-  color: #fff;
+  /* color: #fff; */
   opacity: 0.9;
   background-image: radial-gradient(
       var(--primary-color) 0.5px,
@@ -37,4 +37,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+nav {
+  animation: ease-in fadein 0.8s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: 1;
+  }
 }

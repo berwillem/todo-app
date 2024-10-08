@@ -5,12 +5,14 @@ import { SiLevelsdotfyi } from "react-icons/si";
 import { FaNewspaper } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 
+
+import { FcTodoList } from "react-icons/fc";
 export default function NavBar() {
   return (
     <>
       <nav>
         <ul>
-          <NavLink to={"/home"}>
+          <NavLink to={""}>
             <li>
               <FaHome className="icon" />
             </li>
@@ -20,7 +22,7 @@ export default function NavBar() {
               <SiLevelsdotfyi className="icon" />
             </li>
           </NavLink>
-          <NavLink to={"/news"}>
+          <NavLink to={"/blog"}>
             <li>
               <FaNewspaper className="icon" />
             </li>

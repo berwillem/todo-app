@@ -3,9 +3,9 @@ nav {
   width: 80px;
   height: 400px;
   position: fixed;
-  top: 50%;
-  left:15%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  left: 12%;
+
   border-radius: 40px;
 }
 nav .icon {
@@ -36,3 +36,6 @@ nav ul li:hover {
 .active .icon {
   color: var(--primary-color);
 }
+/* .container{
+  display:flex;
+} */
