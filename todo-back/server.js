@@ -12,7 +12,9 @@ require("dotenv").config();
 const upload = require("./middleware/upload");
 const axios = require("axios");
 
-
+const bodyParser = require('body-parser');
+require('dotenv').config()
+// dotenv.config({ path: './env.development' });
 const app = express();
 const db = process.env.DB,
   port = process.env.PORT || 5000;
@@ -52,7 +54,9 @@ cron.schedule("*/10 * * * * *", async () => {
   }
 });
 
+
 mongoose
+
   .connect(db)
   .then(() => {
     console.log(`connected successfully to ${db}`);
