@@ -135,7 +135,7 @@ export default function Home() {
                 </div>
                 <button type="submit">Login</button>
                 <p>
-                  Don't have an account?{" "}
+                  Dont have an account?{" "}
                   <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer", color: "blue" }}>
                     Register here
                   </span>
