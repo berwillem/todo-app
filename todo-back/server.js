@@ -56,14 +56,16 @@ cron.schedule("*/10 * * * * *", async () => {
 
 
 mongoose
-
+.connect(db)
+.then(() => {
+    console.log(`Connected successfully to ${db}`);
+})
+.catch((err) => {
   .connect(db)
   .then(() => {
-    console.log(`connected successfully to ${db}`);
+    console.log(`connected successfully to MongoDB`);
+
   })
-  .catch((err) => {
-    console.error(err);
-  });
 
 app.listen(port, () => {
   console.log(`Server running on port http://localhost:${port}`); // server is listening on port 5000
