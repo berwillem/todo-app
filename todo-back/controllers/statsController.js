@@ -70,15 +70,14 @@ const getLeaderboard = async (req, res) => {
         $sort: { completedTodosCount: -1 },
       },
       {
-        // Limit to top 10 users
-        $limit: 10,
+        // Limit to top 15 users
+        $limit: 15,
       },
       {
         // Only return relevant fields
         //project: Limits the fields returned to username, email, and completedTodosCount.
         $project: {
           username: 1,
-          email: 1,
           completedTodosCount: 1,
         },
       },
