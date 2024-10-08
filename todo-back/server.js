@@ -20,7 +20,7 @@ app.use("/api/v1", routes)
 mongoose
 .connect(db)
 .then(() => {
-    console.log(`connected successfully to ${db}`); 
+    console.log(`connected successfully to DB`); 
     
 })
 .catch(err => {
