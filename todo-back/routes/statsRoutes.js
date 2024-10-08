@@ -1,5 +1,11 @@
-const { userCount, getUsersWithTheirTodos, todoCount, getEmails } = require('../controllers/statsController');
-const router = require('express').Router();
+const {
+  userCount,
+  getUsersWithTheirTodos,
+  todoCount,
+  getEmails,
+  getLeaderboard,
+} = require("../controllers/statsController");
+const router = require("express").Router();
 
 /**
  * @swagger
@@ -95,5 +101,6 @@ router.get("/getEmails", getEmails);
  *         description: Internal server error
  */
 router.get("/getUsersTodos", getUsersWithTheirTodos);
+router.get("/leaderboard", getLeaderboard);
 
 module.exports = router;

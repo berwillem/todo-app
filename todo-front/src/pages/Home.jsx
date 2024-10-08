@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "../styles/Home.css";
+import axios from "axios";
 import mainIcon from "./../assets/images/mainicon.gif";
 import { TypeAnimation } from "react-type-animation";
 import logo from "./../assets/images/logo-todo-remove.png";
@@ -23,7 +24,7 @@ export default function Home() {
   const [successMessage, setSuccessMessage] = useState('');
 
   const [showPopup, setShowPopup] = useState(false); 
-  const [isLogin, setIsLogin] = useState(false); //pour afficher la popup login 
+  const [isLogin, setIsLogin] = useState(false); 
   const popupRef = useRef(null);
 
   const handleChange = (e) => {
@@ -63,7 +64,6 @@ export default function Home() {
     setIsLogin(false); 
   };
 
-  // Gère le clic en dehors de la popup 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -98,7 +98,6 @@ export default function Home() {
               <div className="subtitle-image">
                 <p>{isLogin ? "Log in to your account" : "Create your account"}</p>
               </div>
-           
               <div className="victorpurpule">
                 <img src={vector3} />
               </div>
@@ -113,14 +112,26 @@ export default function Home() {
             {error && <p className="error-message">{error}</p>}
              console.log({successMessage})
             {isLogin ? (
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
-                  <input type="email" placeholder="Email" required />
+                  <input
+                    type="email" 
+                    name="email"
+                    placeholder="Email" 
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
-                  <input type="password" placeholder="Password" required />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <button type="submit">Login</button>
                 <p>
@@ -131,14 +142,28 @@ export default function Home() {
                 </p>
               </form>
             ) : (
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <FaRegUser className="input-icon" />
-                  <input type="text" placeholder="Full name" required />
+                  <input 
+                    type="text" 
+                    name="username"
+                    placeholder="Full name"
+                    value={userData.username}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
-                  <input type="email" placeholder="Valid email" required />
+                  <input 
+                    type="email"
+                    name="email"
+                    placeholder="Valid email" 
+                    value={userData.email}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
