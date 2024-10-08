@@ -12,7 +12,7 @@ require("dotenv").config();
 const upload = require("./middleware/upload");
 const axios = require("axios");
 
-const rateLimiter = require('./middlewares/rateLimiter');
+const rateLimiter = require('./middleware/rateLimiter');
 const app = express();
 
 const db = process.env.DB;
