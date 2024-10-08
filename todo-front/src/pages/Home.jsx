@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "../styles/Home.css";
+import axios from "axios";
 import mainIcon from "./../assets/images/mainicon.gif";
 import { TypeAnimation } from "react-type-animation";
 import logo from "./../assets/images/logo-todo-remove.png";
@@ -10,18 +11,59 @@ import { LuListTodo } from "react-icons/lu";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
   const [showPopup, setShowPopup] = useState(false); 
-  const [isLogin, setIsLogin] = useState(false); //pour afficher la popup login 
+  const [isLogin, setIsLogin] = useState(false); 
   const popupRef = useRef(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccessMessage('');
+
+    const endpoint = isLogin 
+      ? "http://localhost:5000/api/v1/auth/login" 
+      : "http://localhost:5000/api/v1/auth/register";
+
+    axios.post(endpoint, userData)
+      .then((res) => {
+        if (isLogin) {
+          alert("Successfully logged in");
+          const token = res.data.token; 
+          localStorage.setItem("token", token); 
+          navigate("/");
+        } else {
+          setSuccessMessage("Registered successfully! You can now log in.");
+          setUserData({ username: '', email: '', password: '' }); 
+        }
+      })
+      .catch((err) => {
+        const errorMessage = err.response?.data?.message || (isLogin ? "Login failed" : "Registration failed");
+        setError(errorMessage);
+      });
+  };
 
   const closePopup = () => {
     setShowPopup(false);
     setIsLogin(false); 
   };
 
-  // Gère le clic en dehors de la popup 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -56,7 +98,6 @@ export default function Home() {
               <div className="subtitle-image">
                 <p>{isLogin ? "Log in to your account" : "Create your account"}</p>
               </div>
-           
               <div className="victorpurpule">
                 <img src={vector3} />
               </div>
@@ -68,37 +109,72 @@ export default function Home() {
               </div>
             </div>
             
+            {error && <p className="error-message">{error}</p>}
+             console.log({successMessage})
             {isLogin ? (
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
-                  <input type="email" placeholder="Email" required />
+                  <input
+                    type="email" 
+                    name="email"
+                    placeholder="Email" 
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
-                  <input type="password" placeholder="Password" required />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <button type="submit">Login</button>
                 <p>
-                  Don't have an account?{" "}
+                  Dont have an account?{" "}
                   <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer", color: "blue" }}>
                     Register here
                   </span>
                 </p>
               </form>
             ) : (
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                   <FaRegUser className="input-icon" />
-                  <input type="text" placeholder="Full name" required />
+                  <input 
+                    type="text" 
+                    name="username"
+                    placeholder="Full name"
+                    value={userData.username}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <MdOutlineEmail className="input-icon" />
-                  <input type="email" placeholder="Valid email" required />
+                  <input 
+                    type="email"
+                    name="email"
+                    placeholder="Valid email" 
+                    value={userData.email}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <div className="input-wrapper">
                   <RiLockPasswordLine className="input-icon" />
-                  <input type="password" placeholder="Strong password" required />
+                  <input 
+                    type="password"
+                    name="password"
+                    placeholder="Strong password"
+                    value={userData.password}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
                 <button type="submit">Register</button>
                 <p>
