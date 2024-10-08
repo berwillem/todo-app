@@ -10,6 +10,8 @@ const cors = require("cors"); // Import CORS
 const cron = require("node-cron"); // Import node-cron for scheduled jobs
 require("dotenv").config();
 const upload = require("./middleware/upload");
+const axios = require("axios");
+
 
 const app = express();
 const db = process.env.DB,
@@ -36,13 +38,18 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const routes = require("./routes/index");
 app.use("/api/v1", routes);
 
-// Cron Job to log every minute
-cron.schedule("*/10 * * * * *", () => {
-  const now = new Date();
-  const logMessage = `Cron job executed at ${now}\n`;
-  fs.appendFile(path.join(__dirname, "access.log"), logMessage, (err) => {
-    if (err) throw err;
-  });
+cron.schedule("*/10 * * * * *", async () => {
+  try {
+    const response = await axios.post("http://localhost:5000/user/:id/todo", {
+      data: {
+        key: "value", 
+      },
+    });
+
+    console.log(`API call successful: ${response.status} - ${response.statusText}`);
+  } catch (error) {
+    console.error(`Error during API call: ${error.message}`);
+  }
 });
 
 mongoose

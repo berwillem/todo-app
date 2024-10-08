@@ -37,4 +37,63 @@ const getUsersWithTheirTodos = async (req, res) => {
   }
 };
 
-module.exports = { userCount, todoCount, getEmails, getUsersWithTheirTodos };
+const getLeaderboard = async (req, res) => {
+  try {
+    const leaderboard = await User.aggregate([
+      {
+        // Join with the Todo collection
+        //lookup: Joins the User collection with the Todo collection based on the tasks array.
+        $lookup: {
+          from: "todos",
+          localField: "tasks",
+          foreignField: "_id",
+          as: "todos",
+        },
+      },
+      {
+        // Add a field to count only completed todos
+        //addFields: Adds a new field completedTodosCount to store the count of completed todos.
+        $addFields: {
+          completedTodosCount: {
+            $size: {
+              $filter: {
+                input: "$todos",
+                as: "todo",
+                cond: { $eq: ["$$todo.completed", true] },
+              },
+            },
+          },
+        },
+      },
+      {
+        // Sort by the number of completed todos in descending order
+        $sort: { completedTodosCount: -1 },
+      },
+      {
+        // Limit to top 10 users
+        $limit: 10,
+      },
+      {
+        // Only return relevant fields
+        //project: Limits the fields returned to username, email, and completedTodosCount.
+        $project: {
+          username: 1,
+          email: 1,
+          completedTodosCount: 1,
+        },
+      },
+    ]);
+
+    res.status(200).json({ leaderboard });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  userCount,
+  todoCount,
+  getEmails,
+  getUsersWithTheirTodos,
+  getLeaderboard,
+};
