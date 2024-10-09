@@ -47,8 +47,11 @@ export default function Home() {
         if (isLogin) {
           alert("Successfully logged in");
           const token = res.data.token;
-          localStorage.setItem("token", token);
-          navigate("/");
+
+          const id =res.data.user._id 
+          localStorage.setItem("token", token); 
+          navigate(`/admin/${id}`);
+
         } else {
           setSuccessMessage("Registered successfully! You can now log in.");
           setUserData({ username: "", email: "", password: "" });
