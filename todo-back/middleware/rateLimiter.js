@@ -6,7 +6,7 @@ const userRequestLogs = {};
 
 // Sliding Log Rate Limiter Middleware
 const rateLimitWindowMs = 60 * 1000;  // 1 minute window
-const requestLimit = 5;  // Limit of 5 requests per window
+const requestLimit = 100;  // Limit of 5 requests per window
 
 
 
