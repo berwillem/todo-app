@@ -17,6 +17,9 @@ const app = express();
 const db = process.env.DB;
 const port = process.env.PORT || 5000;
 
+// parse request
+app.use(express.json());
+
 // Enable CORS
 app.use(cors());
 
