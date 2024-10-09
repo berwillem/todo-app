@@ -10,8 +10,9 @@ const cors = require("cors"); // Import CORS
 require("dotenv").config();
 const upload = require("./middleware/upload");
 const axios = require("axios");
+const routes = require("./routes/index")
+const { rateLimiter } = require('./middleware/rateLimiter')
 
-const { rateLimiter } = require("./middleware/rateLimiter");
 const app = express();
 
 const db = process.env.DB;
@@ -22,11 +23,14 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors());
+app.use(express.json())
 
 // Swagger route to serve the UI
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 const routes = require("./routes/index");
 app.use("/api/v1", rateLimiter, routes);
+
 
 //use logger
 const accessLogStream = fs.createWriteStream(
@@ -45,13 +49,16 @@ app.use(
   })
 );
 mongoose
-  .connect(db)
-  .then(() => {
+
+.connect(db)
+.then(() => {
     console.log(`Connected successfully to ${db}`);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+})
+.catch((err) => {
+    console.log(`connected successfully to MongoDB`)
+})
+
+
 
 // Start the server
 app.listen(port, () => {
