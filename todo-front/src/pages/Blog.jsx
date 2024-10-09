@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
-
+// style used in modal :
 const style = {
   position: "absolute",
   top: "50%",
@@ -15,7 +15,17 @@ const style = {
 };
 
 export default function Blog() {
+  // states :
   const [blogPosts, setBlogPosts] = useState([]);
+  const [openCreate, setOpenCreate] = useState(false);
+  const [post, setPost] = useState({
+    title: "",
+    content: "",
+    author: "",
+  });
+  const [openDelete, setOpenDelete] = useState(false);
+
+  // evets functions :
   const fetchPosts = () => {
     axios
       .get("http://localhost:5000/api/v1/blogs")
@@ -27,19 +37,6 @@ export default function Blog() {
         console.error("Error fetching blog posts:", error);
       });
   };
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const [post, setPost] = useState({
-    title: "",
-    content: "",
-    author: "",
-  });
-  const [openCreate, setOpenCreate] = useState(false);
-  const handleOpenCreate = () => setOpenCreate(true);
-  const handleCloseCreate = () => setOpenCreate(false);
-
   const createPost = async (e) => {
     e.preventDefault();
     try {
@@ -69,10 +66,6 @@ export default function Blog() {
     fetchPosts();
   };
 
-  const [openDelete, setOpenDelete] = useState(false);
-  const handleOpenDelete = () => setOpenDelete(true);
-  const handleCloseDelete = () => setOpenDelete(false);
-
   const handleDeletion = async (post) => {
     try {
       const response = await axios.delete(
@@ -88,11 +81,22 @@ export default function Blog() {
     setOpenDelete(false); // Close the modal
     fetchPosts();
   };
+  const handleOpenCreate = () => setOpenCreate(true);
+  const handleCloseCreate = () => setOpenCreate(false);
+
+  // effects :
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const handleOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
 
   return (
     <div>
       <div className="post-creation">
         <Button onClick={handleOpenCreate}>Create a post !</Button>
+        {/* modal using mui */}
         <Modal
           open={openCreate}
           onClose={handleCloseCreate}
@@ -122,7 +126,7 @@ export default function Blog() {
           </Box>
         </Modal>
       </div>
-
+      {/* maping the blog posts */}
       {blogPosts.length > 0 ? (
         blogPosts.map((post) => (
           <div key={post.id}>
