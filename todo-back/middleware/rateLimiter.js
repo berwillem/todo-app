@@ -5,7 +5,7 @@ const userRequestLogs = {};
 const rateLimitWindowMs = 60 * 1000; // 1 minute window
 const requestLimit = 100; // Limit of 5 requests per window
 
-exports.rateLimiter = (req, res, next) => {
+const rateLimiter = (req, res, next) => {
   const ip = req.ip; // Use IP as user identifier (can also be user ID if users are authenticated)
   const currentTime = Date.now();
 
@@ -33,3 +33,5 @@ exports.rateLimiter = (req, res, next) => {
   // Allow the request if limit is not exceeded
   next();
 };
+
+module.exports = { rateLimiter };

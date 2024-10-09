@@ -85,6 +85,16 @@ export default function Home() {
 
   return (
     <div className="top-page">
+      <h1
+        style={{
+          textAlign: "center",
+          marginTop: "1rem",
+          color: "white",
+          fontSize: "3rem",
+        }}
+      >
+        The New  <span style={{ color: "var(--third-color)" }}>Todo App</span>
+      </h1>
       {showPopup && (
         <div className="popup">
           <div className="popup-content" ref={popupRef}>
