@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Motivation from "./pages/Motivation";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import Todo from "./pages/Todo/Todo";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "motivation", 
-        element: <Motivation></Motivation>,
+        element: <Todo></Todo>,
       },
       {
         path: "blog", 
