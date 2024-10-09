@@ -37,9 +37,10 @@
   font-size: 45px;
 }
 .info p {
-  text-align: center;
-  letter-spacing: 0.5px;
+  text-align: justify;
+  letter-spacing: 0.1px;
   font-size: 19px;
+  color: white;
 }
 .info button {
   margin-top: 35px;

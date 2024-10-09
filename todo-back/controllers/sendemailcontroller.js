@@ -1,21 +1,16 @@
-const User = require('../models/User');
 const nodemailer = require('nodemailer');
 require('dotenv').config()
-exports.sendemail = 
- async (req, res) => {
+exports.sendemail = async (req, res) => {
     const { email } = req.body;
-
     if (!email) {
         return res.status(400).send('Email manquant');
     }
-
     const mailOptions = {
         from: 'abirbouaouina0@gmail.com',
         to: email,
         subject: 'Message de Bienvenue',
         text: 'Bonjour ', 
     };
-
     try {
         await transporter.sendMail(mailOptions);
         res.status(200).send('Email envoyé avec succès');
