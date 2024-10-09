@@ -1,16 +1,8 @@
-
-
-
 // In-memory request logs (you can switch to Redis for a more scalable solution)
 const userRequestLogs = {};
-
 // Sliding Log Rate Limiter Middleware
 const rateLimitWindowMs = 60 * 1000;  // 1 minute window
 const requestLimit = 100;  // Limit of 5 requests per window
-
-
-
-
 exports.rateLimiter = (req, res, next) => {
     const userId = req.ip;  // Use IP as user identifier (can also be user ID if users are authenticated)
     const currentTime = Date.now();

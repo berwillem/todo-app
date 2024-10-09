@@ -14,6 +14,7 @@ const style = {
   p: 4,
 };
 
+import About from "../components/About/About";
 export default function Blog() {
 
   const [blogPosts, setBlogPosts] = useState([])
