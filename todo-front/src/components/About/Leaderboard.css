@@ -1,0 +1,34 @@
+.leaderboard {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .leaderboard h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  
+  .leaderboard table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  .leaderboard th, .leaderboard td {
+    padding: 10px;
+    border: 1px solid #cccccc00;
+    text-align: center;
+    font-family: sans-serif;
+    color: white;
+  }
+  
+  .leaderboard th {
+    background-color: #23058d;
+    font-weight: bold;
+  }
+  
+  .leaderboard tr:nth-child(even) {
+    background-color: #127796;
+  }
+  
