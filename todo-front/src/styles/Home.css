@@ -284,6 +284,25 @@ position: relative;
   border-radius: 50%;
   padding: 3px;
 }
+/* page user */
+.profile{
+  background-color: #f0f0f0; /* Couleur de fond douce */
+  border: 1px solid #ccc; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 20px; /* Espacement interne */
+  max-width: 400px; /* Largeur maximale */
+  margin: 20px auto; /* Centrer le div horizontalement */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+.profile h1{
+  color: #333; /* Couleur du texte */
+    font-size: 24px; /* Taille de la police */
+    margin-bottom: 10px; /* Espacement en bas */
+}
+.profile p {
+  color: #666; /* Couleur du texte pour le paragraphe */
+    font-size: 16px; /* Taille de la police */
+}
 
 
 
