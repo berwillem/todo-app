@@ -8,8 +8,7 @@ import Register from './pages/Register';
 import Motivation from "./pages/Motivation";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
-import Admin from "./pages/Admin";
-import Todo from "./pages/Todo";
+import Todo from "./pages/Todo/Todo";
 
 
 const router = createBrowserRouter([
@@ -27,13 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: "motivation", 
-        element: <Motivation></Motivation>,
+        element: <Todo></Todo>,
       },
       {
         path: "blog", 
         element: <Blog></Blog>,
       },
-      
     
     ],
   },
@@ -47,21 +45,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
-  {
-    path:"/admin/:id",
-    element:<Admin></Admin>,
-  },
-  {
-    path:"/todo",
-    element:<Todo></Todo>,
-  },
-  {
-    path:"/userblog",
-    element:<Todo></Todo>,
-
-  }
-
 
 ]);
 

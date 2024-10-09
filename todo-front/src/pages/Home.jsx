@@ -12,9 +12,16 @@ import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";  // i18n support
+import LanguageSwitcher from '../components/LanguageSwitcher'; // Language switcher component
+
+// Import i18n configuration
+import '../i18n';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Access translations
+
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -47,11 +54,8 @@ export default function Home() {
         if (isLogin) {
           alert("Successfully logged in");
           const token = res.data.token;
-
-          const id =res.data.user._id 
-          localStorage.setItem("token", token); 
-          navigate(`/admin/${id}`);
-
+          localStorage.setItem("token", token);
+          navigate("/");
         } else {
           setSuccessMessage("Registered successfully! You can now log in.");
           setUserData({ username: "", email: "", password: "" });
@@ -88,16 +92,8 @@ export default function Home() {
 
   return (
     <div className="top-page">
-      <h1
-        style={{
-          textAlign: "center",
-          marginTop: "1rem",
-          color: "white",
-          fontSize: "3rem",
-        }}
-      >
-        The New  <span style={{ color: "var(--third-color)" }}>Todo App</span>
-      </h1>
+      <LanguageSwitcher /> {/* Language Switcher added */}
+
       {showPopup && (
         <div className="popup">
           <div className="popup-content" ref={popupRef}>
@@ -126,7 +122,9 @@ export default function Home() {
                 <FcTodoList />
               </div>
             </div>
+
             {error && <p className="error-message">{error}</p>}
+
             {isLogin ? (
               <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
@@ -230,7 +228,7 @@ export default function Home() {
       </h2>
 
       <div className="info">
-        <h1>Get Started</h1>
+        <h1>{t('getStarted')}</h1> {/* Translated text */}
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
           pariatur adipisci nostrum illum, iusto ipsa nobis enim nisi tenetur
